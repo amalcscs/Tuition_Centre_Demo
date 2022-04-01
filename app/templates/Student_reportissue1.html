@@ -1,0 +1,148 @@
+{%extends 'Student_index.html'%}
+{%load static%}
+{%block content%}
+
+<body>
+  <style>
+    * {
+      color: #6C7293;
+    }
+
+    .table1 {
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 5vh;
+    }
+
+    th,
+    td {
+      text-align: center;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #191c24;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 900px;
+    }
+  </style>
+  <div class="row">
+    <div class="  " style="font-size: 20px;font-weight: 600;opacity: 0.9;color: #6c7293">REPORTED
+      ISSUES</div>
+  </div>
+  <div class="row">
+    <div class="col-12 grid-margin table1">
+      <div class="card ">
+        <div class="card-body">
+
+          <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search ...." title="Type in a name"
+            class="form-control text-white">
+          <br>
+          <div class="table-responsive">
+            <table class="table" id="myTable">
+              <thead>
+                <tr>
+
+                  <th> Sl.No </th>
+
+
+                  <th> Date </th>
+                  <th> Issues </th>
+                  <th> Action</th>
+
+
+                </tr>
+              </thead>
+             
+              <tbody>
+
+                <tr>
+                  <td>1</td>
+                  <td>11/22/3333</td>
+                  <td>Backend Not Working</td>
+                  <td>
+                    
+                    <a href="{% url 'Student_reportissuereply' %}">
+                      <div class="badge badge-outline-success">Submitted</div>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>44/55/6666</td>
+                  <td>Loging Error</td>
+                  <td>
+                    <div class="badge badge-outline-warning">Pending</div></a>
+                    
+                  </td>
+                </tr>
+
+
+              </tbody>
+              
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    function myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+
+    }
+  </script>
+
+
+
+
+</body>
+
+</html>
+{%endblock%}

@@ -1,0 +1,94 @@
+{% extends 'Staff_index.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+  </head>
+  <body>
+    {% comment %} <div class="content-wrapper">     {% endcomment %}
+      <div class="row">   
+        <div class="col-12 grid-margin">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">Progress Report</h3>
+              <div class="form-group">
+                <input type="text" class="form-control"id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name" style="color:white;">
+                 </div>
+              <div class="table-responsive">
+                <table class="table"  id="myTable">
+                  <thead>
+                    <tr>
+                        <th> Sl.No</th>  
+                        <th> Name </th>
+                        <th> Student ID </th>
+                        <th> Contact </th>
+                        <th> Date </th>
+                      
+                        
+                       
+                      </tr>
+                  </thead>
+                  <tbody>
+                 
+                   
+                     <tr data-href="{% url 'Staff_progress_report_table'  %}">
+                    <td> 1</td>
+                    <td> Niranj </td>
+                    <td>12123321 </td>
+                    <td> 7558986858</td>
+                    <td>26-01-2000 </td>
+                      </tr>
+                      <tr data-href="{% url 'Staff_progress_report_table'  %}">
+                        <td> 2</td>
+                        <td> Subeesh </td>
+                        <td>12123321 </td>
+                        <td> 7558986858</td>
+                        <td>26-01-2000 </td>
+                          </tr>
+                   
+                    
+                
+                    
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% comment %} </div> {% endcomment %}
+  </body>
+</html>
+<script>
+  $(document).ready(function() {
+      $('table tr').click(function() {
+          window.location = $(this).data('href');
+          return false;
+      });
+  });
+</script>
+
+{% endblock%}
